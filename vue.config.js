@@ -1,9 +1,9 @@
 module.exports = {
-  publicPath: process.env.VITE_BASE_URL || '/',
+  publicPath: process.env.VITE_BASE_URL || './',
 
   // Add this line to sync BASE_URL with publicPath
   configureWebpack: {
-    base: process.env.VITE_BASE_URL || '/',
+    base: process.env.VITE_BASE_URL || './',
   }
 };
 
