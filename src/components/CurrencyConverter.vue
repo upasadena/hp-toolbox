@@ -1,127 +1,166 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" class="d-flex justify-space-between align-center">
         <h1>Currency Converter</h1>
+        <v-btn @click="reset">Reset</v-btn>
       </v-col>
     </v-row>
 
     <v-row>
+      <!-- Muggle Currencies Column -->
       <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="gbp"
-          label="GBP"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('gbp')"
-        />
+        <v-row>
+          <v-col cols="12">
+            <h2>Muggle Currencies</h2>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="gbp"
+              label="GBP"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              prefix="£"
+              :class="{ dimmed: isValueEffectivelyZero(gbp) }"
+              @update:model-value="convert('gbp')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="usd"
+              label="USD"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              prefix="$"
+              :class="{ dimmed: isValueEffectivelyZero(usd) }"
+              @update:model-value="convert('usd')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="nzd"
+              label="NZD"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              prefix="$"
+              :class="{ dimmed: isValueEffectivelyZero(nzd) }"
+              @update:model-value="convert('nzd')"
+            />
+          </v-col>
+        </v-row>
       </v-col>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="usd"
-          label="USD"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('usd')"
-        />
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="nzd"
-          label="NZD"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('nzd')"
-        />
-      </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col cols="12">
-        <h2>Decimal Wizarding Conversion</h2>
+      <!-- Decimal Wizarding Column -->
+      <v-col cols="12" md="4">
+        <v-row>
+          <v-col cols="12">
+            <h2>Decimal Wizarding Conversion</h2>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="galleons1"
+              label="Galleons (Decimal)"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              :class="{ dimmed: isValueEffectivelyZero(galleons1) }"
+              @update:model-value="convert('galleons1')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="sickles1"
+              label="Sickles (Decimal)"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              :class="{ dimmed: isValueEffectivelyZero(sickles1) }"
+              @update:model-value="convert('sickles1')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="knuts1"
+              label="Knuts (Decimal)"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              :class="{ dimmed: isValueEffectivelyZero(knuts1) }"
+              @update:model-value="convert('knuts1')"
+            />
+          </v-col>
+        </v-row>
       </v-col>
-    </v-row>
 
-    <v-row>
+      <!-- Real-World Wizarding Column -->
       <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="galleons1"
-          label="Galleons (Decimal)"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('galleons1')"
-        />
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="sickles1"
-          label="Sickles (Decimal)"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('sickles1')"
-        />
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="knuts1"
-          label="Knuts (Decimal)"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('knuts1')"
-        />
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="12">
-        <h2>Real-World Wizarding Currency</h2>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="galleons2"
-          label="Galleons"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('galleons2')"
-        />
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="sickles2"
-          label="Sickles"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('sickles2')"
-        />
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-text-field
-          v-model.number="knuts2"
-          label="Knuts"
-          :rules="[numberRule]"
-          type="number"
-          variant="underlined"
-          @update:model-value="convert('knuts2')"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="pb-0">
-        <v-checkbox
-          v-model="roundUp"
-          label="Round up smallest denomination"
-        />
+        <v-row>
+          <v-col cols="12">
+            <h2>Real-World Wizarding Currency</h2>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="galleons2"
+              label="Galleons"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              :class="{ dimmed: isValueEffectivelyZero(galleons2) }"
+              @update:model-value="convert('galleons2')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="sickles2"
+              label="Sickles"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              :class="{ dimmed: isValueEffectivelyZero(sickles2) }"
+              @update:model-value="convert('sickles2')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              v-model.number="knuts2"
+              label="Knuts"
+              :rules="[numberRule]"
+              type="number"
+              variant="underlined"
+              :class="{ dimmed: isValueEffectivelyZero(knuts2) }"
+              @update:model-value="convert('knuts2')"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="pb-0">
+            <v-checkbox
+              v-model="roundUp"
+              label="Round up smallest denomination"
+            />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
 
@@ -144,11 +183,6 @@
       </v-col>
       <v-col cols="12" md="6">
         <p>{{ selectedRate.description }}</p>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-btn @click="reset">Reset</v-btn>
       </v-col>
     </v-row>
 
@@ -174,6 +208,13 @@
 
   let isUpdating = false
   let lastSource = 'gbp';
+
+  function isValueEffectivelyZero(value: number | null): boolean {
+    if (value === null) {
+      return true;
+    }
+    return Math.abs(value) < 0.000001;
+  }
 
   function numberRule (value: any) {
     if (value === null || value === '' || /^-?\d*\.?\d+$/.test(value)) {
@@ -330,4 +371,7 @@
 </script>
 
 <style scoped>
+.dimmed {
+  opacity: 0.5;
+}
 </style>
