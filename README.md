@@ -1,6 +1,6 @@
 # Harry Potter Toolbox
 
-## 💿 Install
+## Install
 
 Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
 
@@ -8,7 +8,7 @@ Set up your project using your preferred package manager. Use the corresponding 
 
 After completing the installation, your environment is ready for Vuetify development.
 
-## 💡 Usage
+## Usage
 
 This section covers how to start the development server and build your project for production.
 
@@ -31,8 +31,3 @@ pnpm build
 ```
 
 Once the build process is completed, your application will be ready for deployment in a production environment.
-
-## 📑 License
-[MIT](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2016-present Vuetify, LLC
