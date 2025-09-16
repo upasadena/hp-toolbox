@@ -186,6 +186,40 @@
       </v-col>
     </v-row>
 
+    <v-row v-if="selectedRate.name === 'Custom Galleon Rate'">
+      <v-col cols="12">
+        <v-text-field
+          label="GBP per Galleon"
+          v-model.number="customGalleonRate"
+          type="number"
+          variant="underlined"
+          :rules="[numberRule]"
+        />
+      </v-col>
+    </v-row>
+    <v-row v-if="selectedRate.name === 'Custom Sickle Rate'">
+      <v-col cols="12">
+        <v-text-field
+          label="GBP per Sickle"
+          v-model.number="customSickleRate"
+          type="number"
+          variant="underlined"
+          :rules="[numberRule]"
+        />
+      </v-col>
+    </v-row>
+    <v-row v-if="selectedRate.name === 'Custom Knut Rate'">
+      <v-col cols="12">
+        <v-text-field
+          label="GBP per Knut"
+          v-model.number="customKnutRate"
+          type="number"
+          variant="underlined"
+          :rules="[numberRule]"
+        />
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 
@@ -203,6 +237,10 @@
   const galleons2 = ref<number | null>(null)
   const sickles2 = ref<number | null>(null)
   const knuts2 = ref<number | null>(null)
+
+  const customGalleonRate = ref<number | null>(null);
+  const customSickleRate = ref<number | null>(null);
+  const customKnutRate = ref<number | null>(null);
 
   const roundUp = ref(false)
 
@@ -225,9 +263,14 @@
 
   const exchangeRates = [
     {
-      name: 'Canon Rate',
+      name: 'HP Wiki Rate',
       galleonToGbp: 4.94,
-      description: '1 Galleon = 4.94 GBP',
+      description: '1 Galleon = 4.94 GBP (from HP Wiki)',
+    },
+    {
+      name: 'Approximate',
+      galleonToGbp: 5,
+      description: '1 Galleon = 5 GBP (approximate)',
     },
     {
       name: 'Charity Textbook Rate',
@@ -238,6 +281,21 @@
       name: 'Alternative Textbook Rate',
       galleonToGbp: 3.0296428569,
       description: '1 Galleon = 3.0296428569 GBP',
+    },
+    {
+      name: 'Custom Galleon Rate',
+      galleonToGbp: 0, // Placeholder, will be updated by custom input
+      description: 'Enter custom GBP value for 1 Galleon',
+    },
+    {
+      name: 'Custom Sickle Rate',
+      galleonToGbp: 0, // Placeholder
+      description: 'Enter custom GBP value for 1 Sickle',
+    },
+    {
+      name: 'Custom Knut Rate',
+      galleonToGbp: 0, // Placeholder
+      description: 'Enter custom GBP value for 1 Knut',
     },
   ]
 
@@ -256,7 +314,16 @@
     isUpdating = true
     lastSource = source;
 
-    const galleonToGbp = selectedRate.value.galleonToGbp;
+    let galleonToGbp = selectedRate.value.galleonToGbp;
+
+    if (selectedRate.value.name === 'Custom Galleon Rate') {
+        galleonToGbp = customGalleonRate.value || 0;
+    } else if (selectedRate.value.name === 'Custom Sickle Rate') {
+        galleonToGbp = (customSickleRate.value || 0) * rates.galleonToSickle;
+    } else if (selectedRate.value.name === 'Custom Knut Rate') {
+        galleonToGbp = (customKnutRate.value || 0) * rates.galleonToSickle * rates.sickleToKnut;
+    }
+
     const knutToGbp = galleonToGbp / (rates.galleonToSickle * rates.sickleToKnut);
 
     let baseKnuts = 0
@@ -367,6 +434,24 @@
   watch(selectedRate, () => {
     convert(lastSource)
   })
+
+  watch(customGalleonRate, () => {
+    if (selectedRate.value.name === 'Custom Galleon Rate') {
+      convert(lastSource);
+    }
+  });
+
+  watch(customSickleRate, () => {
+    if (selectedRate.value.name === 'Custom Sickle Rate') {
+      convert(lastSource);
+    }
+  });
+
+  watch(customKnutRate, () => {
+    if (selectedRate.value.name === 'Custom Knut Rate') {
+      convert(lastSource);
+    }
+  });
 
 </script>
 
