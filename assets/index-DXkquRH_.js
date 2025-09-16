@@ -1,1 +1,0 @@
-import{_ as r}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{r as e,f as n,o as s,w as a,h as i}from"./index-c7i6TGnv.js";const c={};function _(f,t){const o=e("router-link");return s(),n(o,{to:"gringotts"},{default:a(()=>[...t[0]||(t[0]=[i(" Gringotts Wizarding Bank ",-1)])]),_:1})}const m=r(c,[["render",_]]);export{m as default};
