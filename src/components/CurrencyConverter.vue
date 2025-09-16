@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" class="d-flex justify-space-between align-center">
-        <h1>Currency Converter</h1>
+        <h1>Gringotts Wizarding Bank</h1>
         <v-btn @click="reset">Reset</v-btn>
       </v-col>
     </v-row>
@@ -63,7 +63,7 @@
       <v-col cols="12" md="4">
         <v-row>
           <v-col cols="12">
-            <h2>Decimal Wizarding Conversion</h2>
+            <h2>Wizarding Currency (Individual)</h2>
           </v-col>
         </v-row>
         <v-row>
@@ -111,7 +111,7 @@
       <v-col cols="12" md="4">
         <v-row>
           <v-col cols="12">
-            <h2>Real-World Wizarding Currency</h2>
+            <h2>Real Wizarding Coins</h2>
           </v-col>
         </v-row>
         <v-row>

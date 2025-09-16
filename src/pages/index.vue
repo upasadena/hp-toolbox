@@ -1,7 +1,5 @@
 <template>
-  <CurrencyConverter />
+  <router-link to="gringotts">
+    Gringotts Wizarding Bank
+  </router-link>
 </template>
-
-<script lang="ts" setup>
-  import CurrencyConverter from '@/components/CurrencyConverter.vue'
-</script>
