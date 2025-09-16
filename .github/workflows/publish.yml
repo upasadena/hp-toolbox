@@ -3,7 +3,13 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main      # Change this to your default branch if needed
+      - main
+
+# Add these permissions
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
