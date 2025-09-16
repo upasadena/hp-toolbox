@@ -263,24 +263,24 @@
 
   const exchangeRates = [
     {
-      name: 'HP Wiki Rate',
+      name: 'HP Wiki Rate (£4.94)',
       galleonToGbp: 4.94,
-      description: '1 Galleon = 4.94 GBP (from HP Wiki)',
+      description: '1 Galleon = 4.94 GBP (from HP Wiki\'s estimates of the most accurate pricing)',
     },
     {
-      name: 'Approximate',
+      name: 'Approximate (£5.00)',
       galleonToGbp: 5,
-      description: '1 Galleon = 5 GBP (approximate)',
+      description: '1 Galleon = 5 GBP (According to J. K. Rowling, the approximate value of a Galleon is "About five Great British pounds, though the exchange rate varies!" )',
     },
     {
-      name: 'Charity Textbook Rate',
+      name: 'Charity Textbook Rate (£5.12)',
       galleonToGbp: 5.12,
-      description: '1 Galleon = 5.12 GBP',
+      description: '1 Galleon = 5.12 GBP — The textbooks JK wrote for charity, Fantastic Beasts and Where to Find Them and Quidditch Through the Ages, state that GB£174 million/US$250 million is equivalent to 34 million Galleons (or 34,000,872 Galleons, 14 Sickles, 7 Knuts to be exact) and works out as approximately £5.12/$7.35 per Galleon',
     },
     {
-      name: 'Alternative Textbook Rate',
+      name: 'Alternative Textbook Rate (£3.03)',
       galleonToGbp: 3.0296428569,
-      description: '1 Galleon = 3.0296428569 GBP',
+      description: '1 Galleon = 3.0296428569 GBP — Much like the Charity Textbook Rate, this rate is based on the price that appears on the back of the books (£4.99 or 1 Galleon, 11 Sickles; and $3.99 or 14 Sickles, 3 Knuts for the original UK and US editions respectively)',
     },
     {
       name: 'Custom Galleon Rate',
